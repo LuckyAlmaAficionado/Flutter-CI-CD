@@ -19,16 +19,19 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 🚀 Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.24.5'
+      - name: 🔍 Check Java Version
+        run: java -version
+
+      - name: ✅ Force Java 17 for Gradle and Flutter
+        run: |
+          echo "JAVA_HOME=${JAVA_HOME_17_X64}" >> $GITHUB_ENV
+          echo "PATH=${JAVA_HOME_17_X64}/bin:$PATH" >> $GITHUB_ENV
 
       - name: 📦 Install Dependencies
         run: flutter pub get
 
       - name: 🔨 Build APK
-        run: flutter build --release
+        run: flutter build apk
 
       - name: 🧪 Decode Firebase Service Account
         run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > firebase-service-account.json
