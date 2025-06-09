@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.belajar_ci_cd"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
