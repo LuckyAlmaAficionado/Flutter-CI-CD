@@ -1,0 +1,38 @@
+name: Flutter CI/CD to Firebase
+
+on:
+  push:
+    branches: [main] # Ganti dengan branch utama kamu kalau beda
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: 🔄 Checkout code
+        uses: actions/checkout@v3
+
+      - name: ☁️ Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+
+      - name: 📦 Install dependencies
+        run: flutter pub get
+
+      - name: 🔨 Build APK
+        run: flutter build apk --release
+
+      - name: 🧪 Decode Firebase Service Account
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > firebase-service-account.json
+
+      - name: 🚀 Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: 1:896672766195:android:ea33d2a2c40a482a81ff86
+          token: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          serviceCredentialsFile: firebase-service-account.json
+          groups: internal-testers # Ganti dengan nama group penguji kamu
+          file: build/app/outputs/flutter-apk/app-release.apk

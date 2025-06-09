@@ -1,0 +1,151 @@
+{
+  "project_info": {
+    "project_number": "896672766195",
+    "firebase_url": "https://flutter-database-f6af4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "flutter-database-f6af4",
+    "storage_bucket": "flutter-database-f6af4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896672766195:android:156e1e148de8396d81ff86",
+        "android_client_info": {
+          "package_name": "com.example.auth_google_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896672766195-827a1tocghgbjgha9d933rku0d9hgurh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.auth_google_login",
+            "certificate_hash": "04e2cb85263f5bb7c1ac4964d25212613e61a078"
+          }
+        },
+        {
+          "client_id": "896672766195-bm0hb3kpoigul9lg1mpbmfes8lsing2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYBT51gUGrROBkj-ONjQc3lWJjyu7gX1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896672766195-bm0hb3kpoigul9lg1mpbmfes8lsing2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "896672766195-irekbqttjd4jsg2dsknqbiq3mpu88a4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.authGoogleLogin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896672766195:android:ea33d2a2c40a482a81ff86",
+        "android_client_info": {
+          "package_name": "com.example.belajar_ci_cd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896672766195-bm0hb3kpoigul9lg1mpbmfes8lsing2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYBT51gUGrROBkj-ONjQc3lWJjyu7gX1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896672766195-bm0hb3kpoigul9lg1mpbmfes8lsing2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "896672766195-irekbqttjd4jsg2dsknqbiq3mpu88a4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.authGoogleLogin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896672766195:android:48091134bcf45b7b81ff86",
+        "android_client_info": {
+          "package_name": "com.luckyalma.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896672766195-641k6ppgufc394d5qn5d0ebb0nn84qjk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luckyalma.chatapp",
+            "certificate_hash": "152085429ee7af1b3769ca35324dcc701200c05b"
+          }
+        },
+        {
+          "client_id": "896672766195-nnm46hjn273qim6oehionnrvfoq5kibp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luckyalma.chatapp",
+            "certificate_hash": "01cd995399e28e7c6f0dcd55d51e8e50317dfafd"
+          }
+        },
+        {
+          "client_id": "896672766195-upbf46ehg2uq7t110n0smn2hrhhaq078.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luckyalma.chatapp",
+            "certificate_hash": "04e2cb85263f5bb7c1ac4964d25212613e61a078"
+          }
+        },
+        {
+          "client_id": "896672766195-bm0hb3kpoigul9lg1mpbmfes8lsing2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYBT51gUGrROBkj-ONjQc3lWJjyu7gX1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896672766195-bm0hb3kpoigul9lg1mpbmfes8lsing2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "896672766195-irekbqttjd4jsg2dsknqbiq3mpu88a4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.authGoogleLogin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
