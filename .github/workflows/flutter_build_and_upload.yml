@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: 🔄 Checkout Repository
@@ -28,7 +28,7 @@ jobs:
         run: flutter pub get
 
       - name: 🔨 Build APK
-        run: flutter build apk --release
+        run: flutter build apk
 
       - name: 🧪 Decode Firebase Service Account
         run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > firebase-service-account.json
