@@ -1,45 +1,119 @@
-name: Flutter CI/CD to Firebase
+# name: Flutter CI/CD to Firebase
+
+# on:
+#   push:
+#     branches: [main]  # Ganti jika nama branch utama kamu berbeda
+#   pull_request:
+
+# jobs:
+#   build:
+#     runs-on: macos-latest
+
+#     steps:
+#       - name: 🔄 Checkout Repository
+#         uses: actions/checkout@v4
+
+#       - name: ⚙️ Setup Java 17
+#         uses: actions/setup-java@v3
+#         with:
+#           distribution: 'temurin'
+#           java-version: '17'
+
+#       - name: 🔍 Check Java Version
+#         run: java -version
+
+#       - name: ✅ Force Java 17 for Gradle and Flutter
+#         run: |
+#           echo "JAVA_HOME=${JAVA_HOME_17_X64}" >> $GITHUB_ENV
+#           echo "PATH=${JAVA_HOME_17_X64}/bin:$PATH" >> $GITHUB_ENV
+
+#       - name: 📦 Install Dependencies
+#         run: flutter pub get
+
+#       - name: 🔨 Build APK
+#         run: flutter build apk
+
+#       - name: 🧪 Decode Firebase Service Account
+#         run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > firebase-service-account.json
+
+#       - name: 🚀 Upload to Firebase App Distribution
+#         uses: wzieba/Firebase-Distribution-Github-Action@v1
+#         with:
+#           appId: 1:896672766195:android:ea33d2a2c40a482a81ff86
+#           serviceCredentialsFile: firebase-service-account.json
+#           groups: internal-testers
+#           file: build/app/outputs/flutter-apk/app-release.apk
+
+
+# Note: In a yml each level is padded by 2 spaces
+name: Flutter
 
 on:
+  # Runs this action when you push on main
   push:
-    branches: [main]  # Ganti jika nama branch utama kamu berbeda
+    branches: [ "main" ]
+  # Runs this when a PR against main is created
   pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build:
+  flutter_job:
+
+    # The machine, we can also use windows-latest or ubuntu-latest
+    # We are choosing macos-latest because we will be also building for iOS
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔄 Checkout Repository
-        uses: actions/checkout@v3
 
-      - name: ⚙️ Setup Java 17
-        uses: actions/setup-java@v3
+      # Clones the project on the machine
+      - uses: actions/checkout@v4
+
+      # Sets up java 11
+      - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: 'zulu'
+          java-version: '11'
 
-      - name: 🔍 Check Java Version
-        run: java -version
-
-      - name: ✅ Force Java 17 for Gradle and Flutter
-        run: |
-          echo "JAVA_HOME=${JAVA_HOME_17_X64}" >> $GITHUB_ENV
-          echo "PATH=${JAVA_HOME_17_X64}/bin:$PATH" >> $GITHUB_ENV
-
-      - name: 📦 Install Dependencies
+      # Installs flutter and related dependency on this machine
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          # flutter-version: '3.16.8'
+          # ^ If you want to use a specific version of flutter
+      
+      # Fetches proj dependencies from pub
+      - name: Install dependencies
         run: flutter pub get
+        # ^ If you want to use a specific version of flutter
+      
+      # Verifies if the dart code is formatted well
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+        # --set-exit-if-changed stops execution if the any code is not well formatted
+        # --output=none prints files which needs to be formatted
+      
+      # Checks for Symantic errors. Can be configured using analysis_options.yaml
+      - name: Analyze project source
+        run: flutter analyze --fatal-warnings
+        # optionally use --fatal-warnings to stop execution if any warnings are found
 
-      - name: 🔨 Build APK
+      # Runs unit test
+      - name: Run tests
+        run: flutter test
+
+      # Create android apk
+      - name: Build apk
         run: flutter build apk
 
       - name: 🧪 Decode Firebase Service Account
         run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > firebase-service-account.json
-
-      - name: 🚀 Upload to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
+      
+        # Upload apk to Firebase distribution
+      - name: Upload apk to Firebase distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
         with:
           appId: 1:896672766195:android:ea33d2a2c40a482a81ff86
-          serviceCredentialsFile: firebase-service-account.json
+          serviceCredentialsFileContent: firebase-service-account.json
           groups: internal-testers
           file: build/app/outputs/flutter-apk/app-release.apk
